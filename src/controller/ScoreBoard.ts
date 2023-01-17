@@ -1,6 +1,6 @@
 
-import { Team } from '../domain/Team';
-import { Score } from '../domain/Score';
+import { Team } from '../model/Team';
+import { Score } from '../model/Score';
 
 export class ScoreBoard {
 
