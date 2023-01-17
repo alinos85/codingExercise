@@ -7,23 +7,20 @@ const HOMETEAM:string= 'home team';
 const AWAYTEAM:string= 'away team';
 const HOMETEAMTYPE:string= 'Home';
 const AWAYTEAMTYPE:string= 'Away';
-const HOMETEAMSCORE:number=2
-const AWAYTEAMSCORE:number=3
+const SCOREZERO:number=0;
 
 describe('When starting new game', () => {
 
   let scoreBoard:ScoreBoard;
-  let homeTeamRequest:TeamRequest ;
-  let awayTeamRequest:TeamRequest ;
+  let homeTeamRequest:TeamRequest; 
+  let awayTeamRequest:TeamRequest;
 
   beforeEach(() => {
     scoreBoard=new ScoreBoard();
-    homeTeamRequest = new TeamRequest(HOMETEAM,HOMETEAMTYPE);
-    awayTeamRequest = new TeamRequest(AWAYTEAM,AWAYTEAMTYPE);
+    homeTeamRequest = new TeamRequest(HOMETEAM,HOMETEAMTYPE,SCOREZERO);
+    awayTeamRequest = new TeamRequest(AWAYTEAM,AWAYTEAMTYPE,SCOREZERO);
   });
   test('score should be initialize to 0-0 and New game added to the scoreboard', () => {
-    let homeTeamRequest = new TeamRequest(HOMETEAM,HOMETEAMTYPE);
-    let awayTeamRequest = new TeamRequest(AWAYTEAM,AWAYTEAMTYPE);
     let scoreZero = new Score(0);
 
     scoreBoard.startNewGame(homeTeamRequest,awayTeamRequest);
@@ -40,9 +37,10 @@ describe('When starting new game', () => {
   });
 
   test('Update the score of a game', () => {
-    
-    let homeTeamScoreRequest = new ScoreRequest(HOMETEAM,HOMETEAMSCORE);
-    let awayTeamScoreRequest = new ScoreRequest(AWAYTEAM,AWAYTEAMSCORE);
+    const AWAYTEAMSCORE:number=2
+    const HOMETEAMSCORE:number=3
+    let homeTeamScoreRequest = new TeamRequest(HOMETEAM,HOMETEAMTYPE,HOMETEAMSCORE);
+    let awayTeamScoreRequest = new TeamRequest(AWAYTEAM,AWAYTEAMTYPE,AWAYTEAMSCORE);
     
     scoreBoard.startNewGame(homeTeamRequest,awayTeamRequest);
     scoreBoard.updateScore(homeTeamScoreRequest,awayTeamScoreRequest);

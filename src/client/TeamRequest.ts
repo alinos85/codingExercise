@@ -1,10 +1,11 @@
 export class TeamRequest {
-    
+    name:string;
     teamType:string;
-    name:string
-    constructor(name:string,teamType:string) {
+    score:number;
+    constructor(name:string,teamType:string,score:number) {
         this.name = name;
-        this.teamType = teamType
+        this.score = score;
+        this.teamType = teamType;
     }
     
 }
