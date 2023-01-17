@@ -8,10 +8,11 @@ describe('When starting new game', () => {
     let scoreBoard = new ScoreBoard();
     let homeTeam = new HomeTeam();
     let awayTeam = new AwayTeam();
+    let scoreZero = new Score(0);
 
     scoreBoard.startNewGame(homeTeam,awayTeam);
 
-    expect(homeTeam.getScore()).toBe(0);
-    expect(homeTeam.getScore()).toBe(0);
+    expect(homeTeam.getScore().isEqualTo(scoreZero)).toBe(true);
+    expect(homeTeam.getScore().isEqualTo(scoreZero)).toBe(true);
   });
 });
