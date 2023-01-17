@@ -2,8 +2,10 @@ import { Score } from './Score';
 
 export class Team {
     private score : Score ;
+    private name: String;
 
-    constructor() {
+    constructor(name:String) {
+        this.name=name
     }
 
     getScore(): Score {
@@ -12,5 +14,9 @@ export class Team {
 
     setScore(score:Score): void {
         this.score = score;
+    }
+
+    getName():String {
+        return this.name;
     }
 }

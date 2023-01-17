@@ -1,8 +1,12 @@
 import {describe, expect, test, beforeEach} from '@jest/globals';
 import { HomeTeam } from '../../src/model/HomeTeam';
 import { AwayTeam } from '../../src/model/AwayTeam';
+import { Game } from '../../src/model/Game';
 import { Score } from '../../src/model/Score';
 import { ScoreBoard } from '../../src/controller/ScoreBoard';
+
+const HOMETEAM:string= 'home team';
+const AWAYTEAM:string= 'away team'
 
 describe('When starting new game', () => {
 
@@ -12,8 +16,8 @@ describe('When starting new game', () => {
     scoreBoard=new ScoreBoard();
   });
   test('score should be initialize 0-0 between 2 teams', () => {
-    let homeTeam = new HomeTeam();
-    let awayTeam = new AwayTeam();
+    let homeTeam = new HomeTeam(HOMETEAM);
+    let awayTeam = new AwayTeam(AWAYTEAM);
     let scoreZero = new Score(0);
 
     scoreBoard.startNewGame(homeTeam,awayTeam);
@@ -23,13 +27,13 @@ describe('When starting new game', () => {
   });
 
   test('New game should be added to the scoreboard', () => {
-    let homeTeam = new HomeTeam();
-    let awayTeam = new AwayTeam();
-    let newGame = new Game(homeTeam,awayTeam);
+    let homeTeam = new HomeTeam(HOMETEAM);
+    let awayTeam = new AwayTeam(AWAYTEAM);
+    let newGame = new Game(awayTeam,homeTeam);
 
     scoreBoard.startNewGame(homeTeam,awayTeam);
 
     expect(scoreBoard.getGames().length).toBe(1);
-    expect(scoreBoard.getGames()[0].isEqualTo(newGame)).toBe(true);
+    expect(scoreBoard.getGames()[0].isEqual(newGame)).toBe(true);
   });
 });
