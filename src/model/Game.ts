@@ -1,7 +1,5 @@
 
 import { Team } from './Team';
-import { AwayTeam } from './AwayTeam';
-import { HomeTeam } from './HomeTeam';
 
 export class Game {
     private awayTeam : Team ;

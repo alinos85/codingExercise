@@ -2,10 +2,8 @@
 import { Team } from '../model/Team';
 import { Game } from '../model/Game';
 import { Score } from '../model/Score';
-import { AwayTeam } from '../model/AwayTeam';
-import { HomeTeam } from '../model/HomeTeam';
 import { TeamMapper } from '../mapper/TeamMapper';
-import { TeamDto } from '../client/TeamDto';
+import { TeamRequest } from '../client/TeamRequest';
 
 export class ScoreBoard {
 
@@ -14,7 +12,7 @@ export class ScoreBoard {
     constructor() {
     }
 
-    startNewGame(homeTeamDto:TeamDto,awayTeamDto:TeamDto): void {
+    startNewGame(homeTeamDto:TeamRequest,awayTeamDto:TeamRequest): void {
 
         let scoreZero = new Score(0);
         let teamMapper = new TeamMapper();

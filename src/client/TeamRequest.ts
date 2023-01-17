@@ -1,4 +1,4 @@
-export class TeamDto {
+export class TeamRequest {
     
     teamType:string;
     name:string

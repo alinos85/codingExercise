@@ -1,6 +1,5 @@
 
-import { TeamDto } from '../../src/client/TeamDto';
-import { Team } from '../../src/model/Team';
+import { TeamRequest } from '../../src/client/TeamRequest';
 import { TeamType } from '../../src/model/TeamType';
 import { TeamMapper } from '../../src/mapper/TeamMapper';
 import {describe, expect, test, beforeEach} from '@jest/globals';
@@ -18,15 +17,15 @@ describe('Mapping TeamDto to HomeTeam and AwayTeam', () => {
     teamMapper=new TeamMapper();
   });
   test('Should map HomeTeamDto to HomeTeam', () => {
-    let homeTeamDto = new TeamDto(HOMETEAM,HOMETEAMTYPE);
+    let homeTeamRequest = new TeamRequest(HOMETEAM,HOMETEAMTYPE);
 
-    let homeTeam = teamMapper.mapToTeam(homeTeamDto);
+    let homeTeam = teamMapper.mapToTeam(homeTeamRequest);
 
     expect(homeTeam.getName()).toBe(HOMETEAM);
     expect(homeTeam.getType()).toBe(TeamType.Home);
   });
   test('Should map AwayTeamDto to AwayTeam', () => {
-    let awayTeamDto = new TeamDto(AWAYTEAM,AWAYTEAMTYPE);
+    let awayTeamDto = new TeamRequest(AWAYTEAM,AWAYTEAMTYPE);
 
     let awayTeam = teamMapper.mapToTeam(awayTeamDto);
 
