@@ -1,13 +1,16 @@
-import { HomeTeam } from '../domain/HomeTeam';
-import { AwayTeam } from '../domain/AwayTeam';
+
+import { Team } from '../domain/Team';
+import { Score } from '../domain/Score';
 
 export class ScoreBoard {
 
     constructor() {
     }
 
-    startNewGame(homeTeam:HomeTeam,awayTeam:AwayTeam): void {
-        homeTeam.setScore(0);
-        awayTeam.setScore(0);
+    startNewGame(homeTeam:Team,awayTeam:Team): void {
+
+        let scoreZero = new Score(0);
+        homeTeam.setScore(scoreZero);
+        awayTeam.setScore(scoreZero);
     }
 }

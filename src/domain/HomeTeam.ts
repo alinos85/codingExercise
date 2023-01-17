@@ -1,14 +1,6 @@
-export class HomeTeam {
-    score : number = 0;
 
-    constructor() {
-    }
+import { Team } from './Team';
 
-    getScore(): number {
-        return this.score;
-    }
-
-    setScore(score:number): void {
-        this.score = score;
-    }
+export class HomeTeam extends Team {
+    
 }

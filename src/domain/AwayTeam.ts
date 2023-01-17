@@ -1,14 +1,5 @@
-export class AwayTeam {
-    private score : number ;
+import { Team } from './Team';
 
-    constructor() {
-    }
-
-    getScore(): number {
-        return this.score;
-    }
-
-    setScore(score:number): void {
-        this.score = score;
-    }
+export class AwayTeam extends Team {
+    
 }

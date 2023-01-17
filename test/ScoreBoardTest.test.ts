@@ -1,6 +1,7 @@
 import {describe, expect, test} from '@jest/globals';
 import { HomeTeam } from '../src/domain/HomeTeam';
 import { AwayTeam } from '../src/domain/AwayTeam';
+import { Score } from '../src/domain/Score';
 import { ScoreBoard } from '../src/service/ScoreBoard.service';
 
 describe('When starting new game', () => {
