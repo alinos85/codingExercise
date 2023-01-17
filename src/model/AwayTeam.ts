@@ -7,8 +7,6 @@ export class AwayTeam extends Team {
     constructor(
         name: string
         ) {
-        
-        // call the constructor of the Person class:
         super(name);
         this.teamType=TeamType.Away
     }
