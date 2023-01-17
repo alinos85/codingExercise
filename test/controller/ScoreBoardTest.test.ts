@@ -1,12 +1,13 @@
 import {describe, expect, test, beforeEach} from '@jest/globals';
-import { HomeTeam } from '../../src/model/HomeTeam';
-import { AwayTeam } from '../../src/model/AwayTeam';
+import { TeamDto } from '../../src/client/TeamDto';
 import { Game } from '../../src/model/Game';
 import { Score } from '../../src/model/Score';
 import { ScoreBoard } from '../../src/controller/ScoreBoard';
 
 const HOMETEAM:string= 'home team';
-const AWAYTEAM:string= 'away team'
+const AWAYTEAM:string= 'away team';
+const HOMETEAMTYPE:string= 'Home';
+const AWAYTEAMTYPE:string= 'Away';
 
 describe('When starting new game', () => {
 
@@ -15,25 +16,21 @@ describe('When starting new game', () => {
   beforeEach(() => {
     scoreBoard=new ScoreBoard();
   });
-  test('score should be initialize 0-0 between 2 teams', () => {
-    let homeTeam = new HomeTeam(HOMETEAM);
-    let awayTeam = new AwayTeam(AWAYTEAM);
+  test('score should be initialize to 0-0 and New game added to the scoreboard', () => {
+    let homeTeamDto = new TeamDto(HOMETEAM,HOMETEAMTYPE);
+    let awayTeamDto = new TeamDto(AWAYTEAM,AWAYTEAMTYPE);
     let scoreZero = new Score(0);
 
-    scoreBoard.startNewGame(homeTeam,awayTeam);
-
-    expect(homeTeam.getScore().isEqualTo(scoreZero)).toBe(true);
-    expect(homeTeam.getScore().isEqualTo(scoreZero)).toBe(true);
-  });
-
-  test('New game should be added to the scoreboard', () => {
-    let homeTeam = new HomeTeam(HOMETEAM);
-    let awayTeam = new AwayTeam(AWAYTEAM);
-    let newGame = new Game(awayTeam,homeTeam);
-
-    scoreBoard.startNewGame(homeTeam,awayTeam);
+    scoreBoard.startNewGame(homeTeamDto,awayTeamDto);
 
     expect(scoreBoard.getGames().length).toBe(1);
-    expect(scoreBoard.getGames()[0].isEqual(newGame)).toBe(true);
+
+    
+    let newGame = scoreBoard.getGames()[0];
+    let homeTeam = newGame.getHomeTeam();
+    let awayTeam = newGame.getAwayTeam();
+    
+    expect(homeTeam.getScore().isEqualTo(scoreZero)).toBe(true);
+    expect(awayTeam.getScore().isEqualTo(scoreZero)).toBe(true);
   });
 });

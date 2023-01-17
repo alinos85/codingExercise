@@ -1,20 +1,22 @@
-import { HomeTeam } from './HomeTeam';
+
+import { Team } from './Team';
 import { AwayTeam } from './AwayTeam';
+import { HomeTeam } from './HomeTeam';
 
 export class Game {
-    private awayTeam : AwayTeam ;
-    private homeTeam : HomeTeam ;
+    private awayTeam : Team ;
+    private homeTeam : Team ;
 
-    constructor(awayTeam : AwayTeam, homeTeam : HomeTeam ) {
+    constructor(awayTeam : Team, homeTeam : Team ) {
         this.awayTeam=awayTeam;
         this.homeTeam=homeTeam;
     }
 
-    getAwayTeam(): AwayTeam {
+    getAwayTeam(): Team {
         return this.awayTeam;
     }
 
-    getHomeTeam(): HomeTeam {
+    getHomeTeam(): Team {
         return this.homeTeam;
     }
 
