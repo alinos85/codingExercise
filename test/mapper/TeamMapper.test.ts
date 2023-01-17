@@ -8,6 +8,7 @@ const HOMETEAM:string= 'home team';
 const AWAYTEAM:string= 'away team';
 const HOMETEAMTYPE:string= 'Home';
 const AWAYTEAMTYPE:string= 'Away';
+const SCOREZERO:number=0;
 
 describe('Mapping TeamDto to HomeTeam and AwayTeam', () => {
 
@@ -17,7 +18,7 @@ describe('Mapping TeamDto to HomeTeam and AwayTeam', () => {
     teamMapper=new TeamMapper();
   });
   test('Should map HomeTeamDto to HomeTeam', () => {
-    let homeTeamRequest = new TeamRequest(HOMETEAM,HOMETEAMTYPE);
+    let homeTeamRequest = new TeamRequest(HOMETEAM,HOMETEAMTYPE,SCOREZERO);
 
     let homeTeam = teamMapper.mapToTeam(homeTeamRequest);
 
@@ -25,7 +26,7 @@ describe('Mapping TeamDto to HomeTeam and AwayTeam', () => {
     expect(homeTeam.getType()).toBe(TeamType.Home);
   });
   test('Should map AwayTeamDto to AwayTeam', () => {
-    let awayTeamDto = new TeamRequest(AWAYTEAM,AWAYTEAMTYPE);
+    let awayTeamDto = new TeamRequest(AWAYTEAM,AWAYTEAMTYPE,SCOREZERO);
 
     let awayTeam = teamMapper.mapToTeam(awayTeamDto);
 

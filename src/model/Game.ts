@@ -6,10 +6,9 @@ export class Game {
     private homeTeam : Team ;
     private startTime: Date ;  
 
-    constructor(awayTeam : Team, homeTeam : Team, startTime: Date ) {
+    constructor(awayTeam : Team, homeTeam : Team) {
         this.awayTeam=awayTeam;
         this.homeTeam=homeTeam;
-        this.startTime=startTime;
     }
 
     getAwayTeam(): Team {
@@ -24,9 +23,12 @@ export class Game {
         return this.startTime;
     }
 
+    setStartTime(startTime:Date){
+        this.startTime = startTime;
+    }
+
     isEqual(game:Game): boolean{
         return game.getAwayTeam().isEqualTo(this.awayTeam)
          && game.getHomeTeam().isEqualTo(this.homeTeam)
-         && game.getSatartTime().getTime() === this.startTime.getTime();
     }
 }

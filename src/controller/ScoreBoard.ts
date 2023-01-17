@@ -3,7 +3,6 @@ import { Game } from '../model/Game';
 import { Score } from '../model/Score';
 import { TeamMapper } from '../mapper/TeamMapper';
 import { TeamRequest } from '../client/TeamRequest';
-import { ScoreRequest } from '../client/ScoreRequest';
 
 export class ScoreBoard {
 
@@ -20,13 +19,19 @@ export class ScoreBoard {
         let awayTeam= teamMapper.mapToTeam(awayTeamRequest);
         homeTeam.setScore(scoreZero);
         awayTeam.setScore(scoreZero);
-        let game = new Game(awayTeam,homeTeam,new Date());
+        let game = new Game(awayTeam,homeTeam);
         this.games.push(game);
     }
 
-    updateScore(homeTeamScoreRequest:ScoreRequest,awayTeamScoreRequest:ScoreRequest):void{
-
-
+    updateScore(homeTeamScoreRequest:TeamRequest,awayTeamScoreRequest:TeamRequest):void{
+        let teamMapper = new TeamMapper();
+        let homeTeam= teamMapper.mapToTeam(homeTeamScoreRequest);
+        let awayTeam= teamMapper.mapToTeam(awayTeamScoreRequest);
+        homeTeam.setScore(new Score(homeTeamScoreRequest.score));
+        awayTeam.setScore(new Score(awayTeamScoreRequest.score));
+        let game = new Game(awayTeam,homeTeam);
+        const index = this.games.findIndex((g: Game) => g.isEqual(game));
+        this.games = [...this.games.slice(0, index), game, ...this.games.slice(index + 1)];
     }
 
     getGames(): Game[]{
