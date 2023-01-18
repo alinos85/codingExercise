@@ -59,7 +59,7 @@ describe('tests on Score board', () => {
   test('Finish a game currently in progress', () => {
 
     scoreBoard.startNewGame(homeTeamRequest,awayTeamRequest);
-    scoreBoard.finishGame(homeTeamRequest,homeTeamRequest);
+    scoreBoard.finishGame(homeTeamRequest,awayTeamRequest);
 
     expect(scoreBoard.getGames().length).toBe(0);
   });

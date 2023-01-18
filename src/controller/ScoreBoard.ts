@@ -35,6 +35,17 @@ export class ScoreBoard {
         this.games = [...this.games.slice(0, index), game, ...this.games.slice(index + 1)];
     }
 
+    finishGame(homeTeamScoreRequest:TeamRequest,awayTeamScoreRequest:TeamRequest):void{
+        let teamMapper = new TeamMapper();
+        let homeTeam= teamMapper.mapToTeam(homeTeamScoreRequest);
+        let awayTeam= teamMapper.mapToTeam(awayTeamScoreRequest);
+        let game = new Game(awayTeam,homeTeam);
+        const index = this.games.findIndex((g: Game) => g.isEqual(game));
+        if (index > -1) {
+            this.games.splice(index, 1);
+         }
+    }
+
     getGames(): Game[]{
         return this.games;
     }
