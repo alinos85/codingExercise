@@ -1,11 +1,11 @@
 export class Score {
-    private scoreValue : number|null ;
+    private scoreValue : number|undefined;
 
-    constructor(score:number|null) {
+    constructor(score?:number) {
         this.scoreValue=score;
     }
 
-    getScoreValue():number|null{
+    getScoreValue():number|undefined{
         return this.scoreValue;
     }
 
