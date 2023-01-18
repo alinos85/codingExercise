@@ -20,6 +20,7 @@ export class ScoreBoard {
         homeTeam.setScore(scoreZero);
         awayTeam.setScore(scoreZero);
         let game = new Game(awayTeam,homeTeam);
+        game.setStartTime(new Date());
         this.games.push(game);
     }
 

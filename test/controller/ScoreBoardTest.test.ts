@@ -9,7 +9,7 @@ const HOMETEAMTYPE:string= 'Home';
 const AWAYTEAMTYPE:string= 'Away';
 const SCOREZERO:number=0;
 
-describe('When starting new game', () => {
+describe('tests on Score board', () => {
 
   let scoreBoard:ScoreBoard;
   let homeTeamRequest:TeamRequest; 
@@ -17,10 +17,10 @@ describe('When starting new game', () => {
 
   beforeEach(() => {
     scoreBoard=new ScoreBoard();
-    homeTeamRequest = new TeamRequest(HOMETEAM,HOMETEAMTYPE,SCOREZERO);
-    awayTeamRequest = new TeamRequest(AWAYTEAM,AWAYTEAMTYPE,SCOREZERO);
+    homeTeamRequest = new TeamRequest(HOMETEAM,HOMETEAMTYPE,null);
+    awayTeamRequest = new TeamRequest(AWAYTEAM,AWAYTEAMTYPE,null);
   });
-  test('score should be initialize to 0-0 and New game added to the scoreboard', () => {
+  test('when starting a game score should be initialize to 0-0 and New game added to the scoreboard', () => {
     let scoreZero = new Score(0);
 
     scoreBoard.startNewGame(homeTeamRequest,awayTeamRequest);
@@ -54,5 +54,13 @@ describe('When starting new game', () => {
     
     expect(homeTeam.getScore().isEqualTo(new Score(HOMETEAMSCORE))).toBe(true);
     expect(awayTeam.getScore().isEqualTo(new Score(AWAYTEAMSCORE))).toBe(true);
+  });
+
+  test('Finish a game currently in progress', () => {
+
+    scoreBoard.startNewGame(homeTeamRequest,awayTeamRequest);
+    scoreBoard.finishGame(homeTeamRequest,homeTeamRequest);
+
+    expect(scoreBoard.getGames().length).toBe(0);
   });
 });
