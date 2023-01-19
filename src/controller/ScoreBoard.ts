@@ -8,7 +8,7 @@ export class ScoreBoard {
 
     private games:Game[] = [];
     private timePrecision:number= 0
-    PRECISION:number = 0.001
+    PRECISION:number = 0.0001
 
     constructor() {
     }

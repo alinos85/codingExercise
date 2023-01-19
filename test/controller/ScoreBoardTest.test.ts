@@ -63,7 +63,6 @@ describe('tests on Score board', () => {
 
     expect(scoreBoard.getGames().length).toBe(1);
 
-    
     let game = scoreBoard.getGames()[0];
     let homeTeam = game.getHomeTeam();
     let awayTeam = game.getAwayTeam();
