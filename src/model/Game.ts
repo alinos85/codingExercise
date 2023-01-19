@@ -4,7 +4,7 @@ import { Team } from './Team';
 export class Game {
     private awayTeam : Team ;
     private homeTeam : Team ;
-    private startTime: Date ;  
+    private startTime: number ;  //time in millisecond
 
     constructor(awayTeam : Team, homeTeam : Team) {
         this.awayTeam=awayTeam;
@@ -19,16 +19,20 @@ export class Game {
         return this.homeTeam;
     }
 
-    getSatartTime(): Date {
+    getSatartTime(): number {
         return this.startTime;
     }
 
-    setStartTime(startTime:Date){
+    setStartTime(startTime:number){
         this.startTime = startTime;
     }
 
     isEqual(game:Game): boolean{
         return game.getAwayTeam().isEqualTo(this.awayTeam)
          && game.getHomeTeam().isEqualTo(this.homeTeam)
+    }
+
+    getTotalScore():number{
+        return this.getAwayTeam().getTeamScoreValue()+this.getHomeTeam().getTeamScoreValue();
     }
 }

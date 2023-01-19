@@ -7,8 +7,10 @@ import { TeamRequest } from '../client/TeamRequest';
 export class ScoreBoard {
 
     private games:Game[] = [];
+    private static timePrecision:number= 0
 
     constructor() {
+        ScoreBoard.timePrecision=ScoreBoard.timePrecision+0.0001
     }
 
     startNewGame(homeTeamRequest:TeamRequest,awayTeamRequest:TeamRequest): void {
@@ -20,7 +22,8 @@ export class ScoreBoard {
         homeTeam.setScore(scoreZero);
         awayTeam.setScore(scoreZero);
         let game = new Game(awayTeam,homeTeam);
-        game.setStartTime(new Date());
+        let currentTime = new Date()
+        game.setStartTime((currentTime.getTime()) + ScoreBoard.timePrecision);
         this.games.push(game);
     }
 
@@ -44,6 +47,18 @@ export class ScoreBoard {
         if (index > -1) {
             this.games.splice(index, 1);
          }
+    }
+
+    getGamesSummary():Game[]{
+        this.games.sort((g1,g2) => this.orderTwoGames(g1,g2));
+        return this.games;
+    }
+
+    orderTwoGames(game1:Game,game2:Game):number{
+        if (game2.getTotalScore() == game1.getTotalScore()) {
+           return game2.getSatartTime() - game1.getSatartTime();
+        }
+        return game2.getTotalScore()- game1.getTotalScore();
     }
 
     getGames(): Game[]{

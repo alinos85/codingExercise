@@ -5,8 +5,11 @@ export class Score {
         this.scoreValue=score;
     }
 
-    getScoreValue():number|undefined{
-        return this.scoreValue;
+    getScoreValue():number{
+        if(this.scoreValue !== undefined){
+            return this.scoreValue
+        }
+        return 0;
     }
 
     isEqualTo (score:Score): boolean {

@@ -15,6 +15,10 @@ export class Team {
         return this.score;
     }
 
+    getTeamScoreValue():number{
+       return this.score.getScoreValue();
+    }
+
     setScore(score:Score): void {
         this.score = score;
     }
