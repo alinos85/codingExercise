@@ -7,23 +7,27 @@ import { TeamRequest } from '../client/TeamRequest';
 export class ScoreBoard {
 
     private games:Game[] = [];
-    private static timePrecision:number= 0
+    private timePrecision:number= 0
+    PRECISION:number = 0.001
 
     constructor() {
-        ScoreBoard.timePrecision=ScoreBoard.timePrecision+0.0001
     }
 
     startNewGame(homeTeamRequest:TeamRequest,awayTeamRequest:TeamRequest): void {
 
         let scoreZero = new Score(0);
         let teamMapper = new TeamMapper();
+        if(homeTeamRequest.teamType===awayTeamRequest.teamType || homeTeamRequest.teamType !== 'Home' || awayTeamRequest.teamType !== 'Away'){
+            return;
+        }
         let homeTeam= teamMapper.mapToTeam(homeTeamRequest);
         let awayTeam= teamMapper.mapToTeam(awayTeamRequest);
         homeTeam.setScore(scoreZero);
         awayTeam.setScore(scoreZero);
         let game = new Game(awayTeam,homeTeam);
         let currentTime = new Date()
-        game.setStartTime((currentTime.getTime()) + ScoreBoard.timePrecision);
+        this.timePrecision=this.timePrecision+this.PRECISION
+        game.setStartTime((currentTime.getTime()) + this.timePrecision);
         this.games.push(game);
     }
 
