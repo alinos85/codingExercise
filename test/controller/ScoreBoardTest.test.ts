@@ -45,6 +45,17 @@ describe('tests on Score board', () => {
     expect(awayTeam.getScore().isEqualTo(scoreZero)).toBe(true);
   });
 
+  test('when starting a game with wrong type of team', () => {
+    let wrongHomeTeamType = 'wrong home'
+    let wrongHomeTeamRequest = new TeamRequest(HOMETEAM,wrongHomeTeamType);
+    let awayTeamRequest = new TeamRequest(AWAYTEAM,AWAYTEAMTYPE);
+
+    const error = scoreBoard.startNewGame(wrongHomeTeamRequest,awayTeamRequest);
+
+    expect(error).toThrow(Error);
+    expect(error).toThrow("The type of the team should be Home or Away");
+  });
+
   test('Update the score of a game', () => { 
     scoreBoard.startNewGame(homeTeamRequest,awayTeamRequest);
     let homeTeamScoreRequest= new TeamRequest(HOMETEAM,HOMETEAMTYPE,HOMETEAMSCORE);
